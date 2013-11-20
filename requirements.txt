@@ -1,0 +1,4 @@
+flask
+redis
+rpi.gpio
+flake8
