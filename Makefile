@@ -7,4 +7,4 @@ run:
 	venv/bin/python server.py
 
 test:
-	venv/bin/python test.py
+	venv/bin/python tests.py
