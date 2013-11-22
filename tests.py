@@ -9,6 +9,9 @@ class TestViews(unittest.TestCase):
         "status": "on",
         "last_start": "2012-12-12 12:12",
     }
+    UNKNOWN_STATUS = {
+        "status": "unknown"
+    }
 
     def setUp(self):
         self.app = server.app.test_client()
@@ -32,6 +35,16 @@ class TestViews(unittest.TestCase):
             json.loads(response.data),
             self.EXAMPLE_STATUS
         )
+
+    def test_no_status(self):
+        self.redis.hdel('coffeestatus', ['status', 'last_start'])
+        response = self.app.get('/?json')
+        self.assertStatusCode(response, 200)
+        self.assertEquals(
+            json.loads(response.data),
+            self.UNKOWN_STATUS
+        )
+
 
 if __name__ == '__main__':
         unittest.main()
