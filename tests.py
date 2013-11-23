@@ -29,20 +29,21 @@ class TestViews(unittest.TestCase):
         self.assertStatusCode(response, 200)
 
     def test_status(self):
-        response = self.app.get('/?json')
+        response = self.app.get('/api/status')
         self.assertStatusCode(response, 200)
         self.assertEquals(
-            json.loads(response.data),
+            json.loads(response.data)['coffee'],
             self.EXAMPLE_STATUS
         )
 
     def test_no_status(self):
-        self.redis.hdel('coffeestatus', ['status', 'last_start'])
-        response = self.app.get('/?json')
+        self.redis.hdel('coffeestatus', 'status')
+        self.redis.hdel('coffeestatus', 'last_start')
+        response = self.app.get('/api/status')
         self.assertStatusCode(response, 200)
         self.assertEquals(
-            json.loads(response.data),
-            self.UNKOWN_STATUS
+            json.loads(response.data)['coffee'],
+            self.UNKNOWN_STATUS
         )
 
 

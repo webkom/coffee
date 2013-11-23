@@ -9,7 +9,7 @@ An api to the moccamaster at the Abakus office.
 Run the project by running `make run`.
 
 ## Use the API
-### kaffe.abakus.no/?json
+### kaffe.abakus.no/api/status
 Return data of last time coffee was turned on.
 ##### Example
 ```json
@@ -21,7 +21,7 @@ Return data of last time coffee was turned on.
 }
 ```
 
-### kaffe.abakus.no/stats?json
+### kaffe.abakus.no/api/stats
 Return stats of usage of the coffee machine. 
 ##### Example
 ```json

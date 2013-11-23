@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Er kaffen klar?</title>
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body{
+          background: #2e2e2e;
+        }
+        .jumbotron{
+          background: #fafafa;
+          margin-top: 30px;
+        }
+        .documentation{
+          color: #fafafa;
+        }
+        .btn-success{
+          background: #ec483c;
+          border: #e23e32;
+        }
+        .btn-success:hover{
+          background: #d83428;
+        }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1>Er kaffen klar?</h1>
+        <p id="status" class="lead"></p>
+        <p><a class="btn btn-lg btn-success btn-update" href="#" data-role="button">Oppdater</a></p>
+      </div>
+
+      <div class="row documentation">
+        <div class="col-sm-12"><h2>API</h2></div>
+        <div class="col-sm-6">
+          <h4>/api/status</h4>
+          <p>Return data of last time coffee was turned on.</p>
+          <strong>Example response</strong>
+          <pre><code>
+    {
+      "coffee": {
+        "status": "on",
+        "last_start": "2012-12-12 12:12",
+      }
+    }
+          </code></pre>
+        </div>
+
+     </div>
+
+      <div class="footer">
+        
+      </div>
+
+    </div>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/lang/nb.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script type="text/javascript">
+    moment.lang('nb');
+    function updateStatusText(data){
+      $('#status').html(
+        'Kaffetrakteren er ' +
+        ( data.status === 'on' ? 'på' : 'av' ) +
+        '. Den ble sist skrudd på ' +
+        moment(data.last_start, "YYYY-MM-DD HH:mm").fromNow()
+      );
+    }
+    function updateStatus(){
+      $.getJSON('/?json', function(data){
+        updateStatusText(data);
+      });
+    }
+    updateStatus();
+    updateStatusText({status: 'on', last_start: '2013-11-21 10:00'});
+  </script>
+  </body>
+</html>
