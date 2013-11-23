@@ -11,7 +11,7 @@ before_script:
 
 script:
   - flake8
-  - python tests.py
+  - PYTHONPATH=$PWD python coffee/tests.py 
 
 services:
   - redis-server
