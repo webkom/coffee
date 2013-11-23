@@ -1,4 +1,5 @@
 # coffee
+[![Build Status](https://travis-ci.org/webkom/coffee.png?branch=master)](https://travis-ci.org/webkom/coffee)
 
 An api to the moccamaster at the Abakus office.
 
