@@ -4,7 +4,7 @@ setup:
 	cp example_config .coffeerc
 
 run:
-	venv/bin/python server.py
+	PYTHONPATH=$(shell pwd) venv/bin/python coffee/server.py
 
 test:
-	venv/bin/python tests.py
+	PYTHONPATH=$(shell pwd) venv/bin/python coffee/tests.py

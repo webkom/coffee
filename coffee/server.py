@@ -2,8 +2,8 @@ import redis
 
 from flask import Flask, render_template
 
-from config import pool, app_config
-from utils import json_response
+from coffee.config import pool, app_config
+from coffee.utils import json_response
 
 app = Flask(__name__)
 app.config.update(app_config)

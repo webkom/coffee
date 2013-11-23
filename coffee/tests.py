@@ -1,6 +1,7 @@
 import unittest
-import server
 import json
+
+from coffee import server
 
 
 class TestViews(unittest.TestCase):
