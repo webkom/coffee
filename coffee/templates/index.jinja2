@@ -83,7 +83,7 @@
     }
     function updateStatus(){
       $.getJSON('/api/status', function(data){
-        updateStatusText(data);
+        updateStatusText(data.coffee);
       });
     }
     updateStatus();
