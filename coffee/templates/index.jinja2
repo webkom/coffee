@@ -82,12 +82,11 @@
       );
     }
     function updateStatus(){
-      $.getJSON('/?json', function(data){
+      $.getJSON('/api/status', function(data){
         updateStatusText(data);
       });
     }
     updateStatus();
-    updateStatusText({status: 'on', last_start: '2013-11-21 10:00'});
   </script>
   </body>
 </html>
