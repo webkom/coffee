@@ -77,7 +77,7 @@
     function updateStatusText(data){
       $('#status').html(
         'Kaffetrakteren er ' +
-        ( data.status === 'on' ? 'på' : 'av' ) +
+        ( data.status ? 'på' : 'av' ) +
         '. Den ble sist skrudd på ' +
         moment(data.last_start, "YYYY-MM-DD HH:mm").fromNow()
       );
