@@ -53,3 +53,5 @@ def main():
             update_status(True)
         else:
             update_status(False)
+
+main()
