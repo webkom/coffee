@@ -1,13 +1,12 @@
-import redis
-
 from flask import Flask, render_template
 
 from coffee.config import pool, app_config
 from coffee.utils import json_response
+from coffee.models import Status
 
 app = Flask(__name__)
 app.config.update(app_config)
-r = redis.Redis(connection_pool=pool)
+status = Status(pool)
 
 
 @app.route('/')
@@ -16,15 +15,16 @@ def index():
 
 
 @app.route('/api/status')
-def status():
-    data = r.hgetall('coffeestatus')
-    if len(data.keys()) == 0:
+def api_status():
+    try:
+        status.get()
+    except KeyError:
         return json_response({
             'coffee': {'status': 'unknown'}
         })
 
     return json_response({
-        'coffee': data
+        'coffee': status.to_dict()
     })
 
 
