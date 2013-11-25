@@ -73,6 +73,7 @@
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script type="text/javascript">
     moment.lang('nb');
+    var updating = false;
     function updateStatusText(data){
       $('#status').html(
         'Kaffetrakteren er ' +
@@ -82,10 +83,17 @@
       );
     }
     function updateStatus(){
+      updating = true;
       $.getJSON('/api/status', function(data){
         updateStatusText(data.coffee);
+        updating = false;
       });
     }
+    $('.btn-update').on('click', function(){
+        if ( !updating){
+          updateStatus(); 
+        }
+    });
     updateStatus();
   </script>
   </body>
