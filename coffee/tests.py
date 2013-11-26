@@ -41,6 +41,16 @@ class TestViews(unittest.TestCase):
             self.EXAMPLE_STATUS
         )
 
+    def test_stats(self):
+        response = self.app.get('/api/stats')
+        self.assertStatusCode(response, 200)
+        self.assertEquals(
+            json.loads(response.data)['stats'],
+            {
+                datetime.now().strftime('%Y-%m-%d'): '1'
+            }
+        )
+
     def test_no_status(self):
         self.redis.hdel('coffeestatus', 'status')
         self.redis.hdel('coffeestatus', 'last_start')

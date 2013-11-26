@@ -52,3 +52,6 @@ class Status (object):
 
     def get_count(self, date):
         return self.redis.hget('coffeestats', date.strftime('%Y-%m-%d')) or 0
+
+    def get_stats(self):
+        return self.redis.hgetall('coffeestats')
