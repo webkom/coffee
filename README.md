@@ -1,19 +1,25 @@
 # coffee
 [![Build Status](https://travis-ci.org/webkom/coffee.png?branch=master)](https://travis-ci.org/webkom/coffee)
 
-An api to the moccamaster at the Abakus office.
+An API to the Moccamaster at the Abakus office.
 
 ## Setup dev environment
-    git clone git@github.com:webkom/coffee.git
-    make
+```bash
+git clone git@github.com:webkom/coffee.git
+cd coffee
+make
+```
 
 Run the project by running `make run`.
 
 ## Use the API
-### kaffe.abakus.no/api/status
+### GET kaffe.abakus.no/api/status
 Return data of last time coffee was turned on.
-##### Example
+##### Example response
 ```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "coffee": {
     "status": true,
@@ -22,10 +28,13 @@ Return data of last time coffee was turned on.
 }
 ```
 
-### kaffe.abakus.no/api/stats (WIP)
+### GET kaffe.abakus.no/api/stats (WIP)
 Return stats of usage of the coffee machine. 
-##### Example
+##### Example response
 ```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "stats": {
     "2012-12-12": 3,
