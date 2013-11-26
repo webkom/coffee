@@ -11,7 +11,6 @@ class Status (object):
         self.redis = redis.Redis(
             host=app_config['REDIS_HOST'],
             port=app_config['REDIS_PORT'],
-            db=app_config['REDIS_DB'],
             password=app_config['REDIS_PW']
         )
         try:
