@@ -6,7 +6,7 @@ config.read(['.coffeerc'])
 
 app_config = {
     'DEBUG': config.getboolean('coffee_server', 'debug'),
-    'REDIS_DB': config.get('coffee_server', 'redis_db'),
+    'REDIS_DB': int(config.get('coffee_server', 'redis_db')),
     'REDIS_HOST': config.get('coffee_server', 'redis_host'),
     'REDIS_PORT': int(config.get('coffee_server', 'redis_port')),
 }
