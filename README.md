@@ -16,13 +16,13 @@ Return data of last time coffee was turned on.
 ```json
 {
   "coffee": {
-    "status": "on",
+    "status": true,
     "last_start": "2012-12-12 12:12",
   }
 }
 ```
 
-### kaffe.abakus.no/api/stats
+### kaffe.abakus.no/api/stats (WIP)
 Return stats of usage of the coffee machine. 
 ##### Example
 ```json
