@@ -36,8 +36,8 @@ class Status (object):
             'last_start': self.last_start
         }
 
-    def get_last_start(self, status):
-        if status and not datetime.now() > datetime.strptime(self.last_start, '%Y-%m-%d %H:%M'):
+    def calculate_last_start(self, status):
+        if status and datetime.now() > datetime.strptime(self.last_start, '%Y-%m-%d %H:%M'):
             return datetime.now().strftime('%Y-%m-%d %H:%M')
         else:
             return self.last_start
@@ -47,3 +47,8 @@ class Status (object):
             self.current_status = new_status
             self.last_start = self.calculate_last_start()
             self.save()
+            self.log_status(new_status)
+
+    def log_status(self, status):
+        if status:
+            self.redis.hincrby('coffeestats', datetime.now().strftime('%Y-%m-%d'), 1)
