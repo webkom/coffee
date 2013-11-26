@@ -42,7 +42,7 @@ class Status (object):
     def update(self, new_status):
         if not self.current_status == new_status:
             self.current_status = new_status
-            self.last_start = self.calculate_last_start()
+            self.last_start = self.calculate_last_start(new_status)
             self.save()
             self.log_status(new_status)
 
