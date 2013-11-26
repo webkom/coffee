@@ -2,11 +2,18 @@ import redis
 
 from datetime import datetime
 
+from coffee.config import app_config
+
 
 class Status (object):
 
-    def __init__(self, pool):
-        self.redis = redis.Redis(connection_pool=pool)
+    def __init__(self):
+        self.redis = redis.Redis(
+            host=app_config['REDIS_HOST'],
+            port=app_config['REDIS_PORT'],
+            db=app_config['REDIS_DB'],
+            password=app_config['REDIS_PW']
+        )
         previous = self.redis.hgetall('coffeestatus')
         try:
             self.current_status = previous['status'] == 'True'

@@ -1,9 +1,8 @@
 import unittest
 import json
-import redis
 
 from coffee import server
-from coffee.config import pool
+from coffee.models import Status
 
 
 class TestViews(unittest.TestCase):
@@ -18,7 +17,8 @@ class TestViews(unittest.TestCase):
 
     def setUp(self):
         self.app = server.app.test_client()
-        self.redis = redis.Redis(connection_pool=pool)
+        self.status = Status()
+        self.redis = self.status.redis
         self.redis.hmset('coffeestatus', self.EXAMPLE_STATUS)
 
     def tearDown(self):

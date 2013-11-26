@@ -1,12 +1,12 @@
 from flask import Flask, render_template
 
-from coffee.config import pool, app_config
+from coffee.config import app_config
 from coffee.utils import json_response
 from coffee.models import Status
 
 app = Flask(__name__)
 app.config.update(app_config)
-status = Status(pool)
+status = Status()
 
 
 @app.route('/')
