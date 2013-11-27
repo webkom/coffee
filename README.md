@@ -16,10 +16,10 @@ Run the project by running `make run`.
 ### GET kaffe.abakus.no/api/status
 Return data of last time coffee was turned on.
 ##### Example response
-```json
-HTTP/1.1 200 OK
+HTTP/1.1 200 OK   
 Content-Type: application/json
 
+```json
 {
   "coffee": {
     "status": true,
@@ -28,13 +28,13 @@ Content-Type: application/json
 }
 ```
 
-### GET kaffe.abakus.no/api/stats (WIP)
+### GET kaffe.abakus.no/api/stats
 Return stats of usage of the coffee machine. 
 ##### Example response
-```json
-HTTP/1.1 200 OK
+HTTP/1.1 200 OK   
 Content-Type: application/json
 
+```json
 {
   "stats": {
     "2012-12-12": 3,
