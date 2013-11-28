@@ -32,6 +32,9 @@
         .btn-success:hover{
           background: #d83428;
         }
+        .coffe-statistics{
+            color:#fafafa;
+        }
     </style>
   </head>
 
@@ -45,8 +48,17 @@
         <p><a class="btn btn-lg btn-success btn-update" href="#" data-role="button">Oppdater</a></p>
       </div>
 
+      <div class="row coffe-statistics">
+        <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+            <h2>Antall traktede kaffekanner</h2>
+        </div>
+      </div>
       <div class="row">
-        <canvas id="chart" class="well col-xs-12 col-lg-8 col-lg-offset-2" width="800" height="300"></canvas>
+        <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+          <pre>
+            <canvas id="chart" width="700" height="300"></canvas>
+          </pre>
+        </div>
       </div>
 
       <div class="row documentation">
