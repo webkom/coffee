@@ -12,6 +12,16 @@ class TestViews(unittest.TestCase):
         "status": True,
         "last_start": datetime.now().strftime('%Y-%m-%d %H:%M'),
     }
+
+    EXAMPLE_OUTPUT = {
+        "status": True,
+        "last_start": datetime.now().strftime('%Y-%m-%d %H:%M'),
+        "time_since": {
+            "hours": 0,
+            "minutes": 0
+        }
+    }
+
     UNKNOWN_STATUS = {
         "status": "unknown"
     }
@@ -38,7 +48,7 @@ class TestViews(unittest.TestCase):
         self.assertStatusCode(response, 200)
         self.assertEquals(
             json.loads(response.data)['coffee'],
-            self.EXAMPLE_STATUS
+            self.EXAMPLE_OUTPUT
         )
 
     def test_stats(self):
