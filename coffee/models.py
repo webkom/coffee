@@ -37,8 +37,10 @@ class Status (object):
         return {
             'status': self.current_status,
             'last_start': self.last_start.strftime('%Y-%m-%d %H:%M'),
-            'hours_since': self.hours_since,
-            'minutes_since': self.minutes_since
+            'time_since': {
+            	'hours' : self.hours_since,
+            	'minutes' : self.minutes_since
+            }
         }
 
     def calculate_last_start(self, status):
