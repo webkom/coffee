@@ -19,7 +19,7 @@ class TestViews(unittest.TestCase):
         "time_since": {
             "hours": 0,
             "minutes": 0
-        }        
+        }
     }
 
     UNKNOWN_STATUS = {
