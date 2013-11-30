@@ -20,7 +20,7 @@ class Status (object):
             self.last_start = datetime.strptime('1977-11-21 12:00', '%Y-%m-%d %H:%M')
             span = datetime.now() - self.last_start
             self.hours_since = (span.days*24)+(span.seconds//3600)
-            self.minutes_since = (span.seconds//60)%60
+            self.minutes_since = (span.seconds//60) % 60
 
     def save(self):
         self.redis.hmset('coffeestatus', self.to_dict())
@@ -31,15 +31,15 @@ class Status (object):
         self.last_start = datetime.strptime(previous['last_start'], '%Y-%m-%d %H:%M')
         span = datetime.now() - self.last_start
         self.hours_since = (span.days*24)+(span.seconds//3600)
-        self.minutes_since = (span.seconds//60)%60
+        self.minutes_since = (span.seconds//60) % 60
 
     def to_dict(self):
         return {
             'status': self.current_status,
             'last_start': self.last_start.strftime('%Y-%m-%d %H:%M'),
             'time_since': {
-            	'hours' : self.hours_since,
-            	'minutes' : self.minutes_since
+                'hours': self.hours_since,
+                'minutes': self.minutes_since
             }
         }
 
