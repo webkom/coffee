@@ -70,7 +70,7 @@
       <div id="docs" class="row documentation">
         <div class="col-sm-12"><h2>API</h2></div>
         <div class="col-sm-6">
-          <h4>GET /api/status</h4>
+          <h4>GET <a href="http://kaffe.abakus.no/api/status">/api/status</a></h4>
           <p>Returner data om sist gang kaffetrakteren var på.</p>
           <strong>Eksempel</strong>
           <pre><code>
@@ -87,7 +87,7 @@
           </code></pre>
         </div>
         <div class="col-sm-6">
-          <h4>GET /api/stats</h4>
+          <h4>GET <a href="http://kaffe.abakus.no/api/stats">/api/stats</a></h4>
           <p>Returnerer statistikk om bruket av kaffetrakteren.</p>
           <strong>Eksempel</strong>
           <pre><code>
@@ -170,7 +170,7 @@
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="well">
-            <h3>online noitifier</h3>
+            <h3>online-notifier</h3>
             <iframe src="http://ghbtns.com/github-btn.html?user=dotKom&repo=online-notifier&type=watch"
                 allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
             <iframe src="http://ghbtns.com/github-btn.html?user=dotKom&repo=online-notifier&type=fork"
@@ -198,7 +198,7 @@
         'Kaffetrakteren er ' +
         ( data.status ? 'på' : 'av' ) +
         '. Den ble sist skrudd på ' +
-        moment(data.last_start, 'YYYY-MM-DD HH:mm').fromNow()
+        moment(data.last_start, 'YYYY-MM-DD HH:mm').fromNow() + '.'
       );
     }
     function updateStatus(){
