@@ -13,7 +13,7 @@ make
 Run the project by running `make run`.
 
 ## Use the API
-### GET kaffe.abakus.no/api/status
+### GET [kaffe.abakus.no/api/status](http://kaffe.abakus.no/api/status)
 Return data of last time coffee was turned on.
 ##### Example response
 HTTP/1.1 200 OK   
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 ```
 
-### GET kaffe.abakus.no/api/stats
+### GET [kaffe.abakus.no/api/stats](http://kaffe.abakus.no/api/stats)
 Return stats of usage of the coffee machine. 
 ##### Example response
 HTTP/1.1 200 OK   
