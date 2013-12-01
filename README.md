@@ -24,6 +24,10 @@ Content-Type: application/json
   "coffee": {
     "status": true,
     "last_start": "2012-12-12 12:12",
+    "time_since": {
+	  "hours": 0,
+	  "minutes": 0
+	}
   }
 }
 ```
