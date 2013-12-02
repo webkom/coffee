@@ -3,6 +3,7 @@ from datetime import datetime
 
 from coffee.config import app_config
 from coffee.utils import json_response, txt_response
+from coffee.decorators import crossdomain
 from coffee.models import Status
 
 app = Flask(__name__)
@@ -15,6 +16,7 @@ def index():
     return render_template('index.jinja2')
 
 
+@crossdomain(origin='jorgeaab.github.io')
 @app.route('/api/status')
 def api_status():
     try:
