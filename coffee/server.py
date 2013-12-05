@@ -16,8 +16,8 @@ def index():
     return render_template('index.jinja2')
 
 
-@crossdomain(origin='jorgeaab.github.io')
 @app.route('/api/status')
+@crossdomain(origin='*')
 def api_status():
     try:
         status.get()
@@ -41,6 +41,7 @@ def coffeetxt():
 
 
 @app.route('/api/stats')
+@crossdomain(origin='*')
 def api_stats():
     return json_response({
         'stats': status.get_stats()
