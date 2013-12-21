@@ -1,6 +1,6 @@
 import redis
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from coffee.config import app_config
 
@@ -54,7 +54,8 @@ class Status (object):
             self.current_status = new_status
             self.last_start = self.calculate_last_start(new_status)
             self.save()
-            self.log_status(new_status)
+            if self.last_start + timedelta(seconds=40) < datetime.now():
+                self.log_status(new_status)
 
     def log_status(self, status):
         if status:
