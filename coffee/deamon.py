@@ -1,3 +1,5 @@
+#!/home/pi/coffee/venv/bin/python
+
 import time
 import sys
 import os
