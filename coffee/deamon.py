@@ -6,7 +6,6 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from coffee.config import pool
 from coffee.models import Status
 
 DEBUG = 1
@@ -17,7 +16,7 @@ def main():
     import RPi.GPIO as GPIO
 
     GPIO.setmode(GPIO.BCM)
-    status = Status(pool)
+    status = Status()
 
     def rc_time(RCpin):
         reading = 0
