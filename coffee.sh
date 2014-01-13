@@ -15,7 +15,7 @@ DIR=/home/pi/coffee/coffee
 DAEMON=$DIR/deamon.py
 DAEMON_NAME=coffee
 
-DAEMON_USER=pi
+DAEMON_USER=root
 
 PIDFILE=/var/run/$DAEMON_NAME.pid
 
