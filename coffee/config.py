@@ -1,8 +1,7 @@
-import ConfigParser
-
+import ConfigParser, os
 
 config = ConfigParser.ConfigParser()
-config.read(['.coffeerc'])
+config.read([os.path.dirname(os.path.dirname(__file__)) + '/.coffeerc'])
 
 app_config = {
     'DEBUG': config.getboolean('coffee_server', 'debug'),
