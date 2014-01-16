@@ -1,4 +1,5 @@
-import ConfigParser, os
+import ConfigParser
+import os
 
 config = ConfigParser.ConfigParser()
 config.read([os.path.dirname(os.path.dirname(__file__)) + '/.coffeerc'])
