@@ -1,5 +1,6 @@
 moment.lang('nb');
 var updating = {'status': false, 'stats': false},
+  jsChart,
   transform = function(d) {
     var out = {
         labels: [],
@@ -57,9 +58,14 @@ var updating = {'status': false, 'stats': false},
             scaleStepWidth: stepWidth,
             scaleStartValue: 0,
             animation: false
-          },
-          chart = new Chart(ctx).Line(model, options);
-        c.css('width', '');
+          };
+        if (!jsChart) {
+          jsChart = new Chart(ctx);
+          jsChart.Line(model, options);
+        }
+        else {
+          jsChart.Line(model, options);
+        }
         updating.stats = false;
       });
     }
