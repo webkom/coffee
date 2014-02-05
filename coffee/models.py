@@ -52,10 +52,11 @@ class Status (object):
     def update(self, new_status):
         if not self.current_status == new_status:
             self.current_status = new_status
-            self.last_start = self.calculate_last_start(new_status)
-            self.save()
             if self.last_start + timedelta(seconds=40) < datetime.now():
                 self.log_status(new_status)
+            self.last_start = self.calculate_last_start(new_status)
+            self.save()
+
 
     def log_status(self, status):
         if status:
