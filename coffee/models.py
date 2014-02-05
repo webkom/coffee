@@ -57,7 +57,6 @@ class Status (object):
             self.last_start = self.calculate_last_start(new_status)
             self.save()
 
-
     def log_status(self, status):
         if status:
             self.redis.hincrby('coffeestats', datetime.now().strftime('%Y-%m-%d'), 1)
