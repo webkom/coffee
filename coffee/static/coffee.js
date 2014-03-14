@@ -20,6 +20,9 @@ var updating = {'status': false, 'stats': false},
       out.labels.push(k);
     }
     out.labels.sort();
+    if (out.labels.length > 10) {
+      out.labels = out.labels.slice(-10);
+    }
     for (var i = 0; i < out.labels.length; i++) {
       dataset.data.push(parseInt(d[out.labels[i]], 10));
       out.labels[i] = moment(out.labels[i], 'YYYY-MM-DD').format('DD-MM');
