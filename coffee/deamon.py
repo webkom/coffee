@@ -11,6 +11,7 @@ from coffee.models import Status
 
 DEBUG = 1
 PIN = 14
+on = False
 
 
 def main():
@@ -18,9 +19,9 @@ def main():
 
     GPIO.setmode(GPIO.BCM)
     status = Status()
-    on = False
 
     def rc_time(RCpin):
+        global on
         reading = 0
         GPIO.setup(RCpin, GPIO.OUT)
         GPIO.output(RCpin, GPIO.LOW)
@@ -28,8 +29,8 @@ def main():
         GPIO.setup(RCpin, GPIO.IN)
         while (GPIO.input(RCpin) == GPIO.LOW):
             reading += 1
-            if on = True and reading > 5000: #ugly hack
-                status.uppdate(False)
+            if on and reading > 5000: #ugly hack
+                status.update(False)
                 on = False
         return reading
 
