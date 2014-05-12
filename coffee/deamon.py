@@ -1,7 +1,6 @@
 #!/home/pi/coffee/venv/bin/python
 
 import time
-from datetime import datetime
 import sys
 import os
 
@@ -11,7 +10,6 @@ from coffee.models import Status
 
 DEBUG = 1
 PIN = 14
-on = False
 
 
 def main():
@@ -21,22 +19,22 @@ def main():
     status = Status()
 
     def rc_time(RCpin):
-        global on
         reading = 0
         GPIO.setup(RCpin, GPIO.OUT)
         GPIO.output(RCpin, GPIO.LOW)
         time.sleep(0.1)
+
         GPIO.setup(RCpin, GPIO.IN)
         while (GPIO.input(RCpin) == GPIO.LOW):
             reading += 1
-            if on and reading > 5000: #ugly hack
-                status.update(False)
-                on = False
+            if reading > 5000
+                return reading
         return reading
 
     while True:
-        if rc_time(PIN) < 5000:
+        if rc_time(PIN) =< 5000:
             status.update(True)
-            on = True
+        else:
+            status.update(False)
 
 main()
