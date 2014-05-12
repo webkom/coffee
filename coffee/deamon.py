@@ -1,6 +1,7 @@
 #!/home/pi/coffee/venv/bin/python
 
 import time
+from datetime import datetime
 import sys
 import os
 
@@ -17,22 +18,24 @@ def main():
 
     GPIO.setmode(GPIO.BCM)
     status = Status()
+    on = False
 
     def rc_time(RCpin):
         reading = 0
         GPIO.setup(RCpin, GPIO.OUT)
         GPIO.output(RCpin, GPIO.LOW)
         time.sleep(0.1)
-
         GPIO.setup(RCpin, GPIO.IN)
         while (GPIO.input(RCpin) == GPIO.LOW):
             reading += 1
+            if on = True and reading > 5000: #ugly hack
+                status.uppdate(False)
+                on = False
         return reading
 
     while True:
-        if rc_time(PIN) < 2500:
+        if rc_time(PIN) < 5000:
             status.update(True)
-        else:
-            status.update(False)
+            on = True
 
 main()
