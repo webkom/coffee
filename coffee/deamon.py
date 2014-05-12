@@ -27,7 +27,7 @@ def main():
         GPIO.setup(RCpin, GPIO.IN)
         while (GPIO.input(RCpin) == GPIO.LOW):
             reading += 1
-            if reading > 5000
+            if reading > 5000:
                 return reading
         return reading
 
