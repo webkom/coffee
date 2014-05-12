@@ -1,0 +1,133 @@
+moment.lang('nb')
+
+app = angular.module("coffee", [], ()->)
+
+app.controller("viewController", ["$scope", ($scope) ->
+  start = 0
+  end = 6
+  $scope.graphPosition = 0
+  $scope.updating = {'status': false, 'stats': false}
+  $scope.status = {'status': false, 'last_start': undefined}
+  $scope.stats = {
+    '2014-02-02': 5,
+    '2014-02-01': 10,
+    '2014-02-03': 5,
+    '2014-02-05': 1,
+    '2014-02-06': 5,
+    '2014-02-04': 7,
+    '2014-02-07': 1,
+    '2014-02-08': 5,
+    '2014-02-09': 7,
+  }
+
+  $scope.chart = {
+    labels: [],
+    datasets: [{
+      fillColor : 'rgba(220,220,220,0.5)',
+      strokeColor : '#ec483c',
+      pointColor : '#ec483c',
+      pointStrokeColor : '#e23e32',
+      data : []
+    }],
+    options: {
+      type: 'Line',
+      width: 700,
+      height: 300,
+      scaleOverride: true,
+      scaleSteps: 10,
+      scaleStepWidth: 2,
+      scaleStartValue: 0,
+      animation: false
+    },
+    setMaxValue: (maxValue) ->
+      $scope.chart.maxValue = maxValue
+      $scope.chart.options.scaleSteps = maxValue / $scope.chart.options.scaleStepWidth
+  }
+
+  updateGraph = (start, end) ->
+    $scope.chart.datasets[0].data = []
+    labels = []
+    dates = Object.keys($scope.stats)
+    dates.sort()
+    dates = dates.slice(start, end)
+
+    for k in dates
+      labels.push(k)
+
+    for i, label in labels
+      $scope.chart.datasets[0].data.push(parseInt($scope.stats[label], 10))
+      labels[i] = moment(labels[i], 'YYYY-MM-DD').format('DD-MM')
+
+    $scope.chart.labels = labels
+    $scope.chart.setMaxValue(Math.max.apply(Math, $scope.chart.datasets[0].data))
+
+  $scope.statusText = () ->
+    status = $scope.status.status ? 'på' : 'av'
+    timeSince = moment($scope.status.last_start, 'YYYY-MM-DD HH:mm').fromNow()
+    return 'Kaffetrakteren er #{status}. Den ble sist skrudd på #{timeSince}.'
+
+  $scope.setGraphPosition = (startValue) ->
+    start = startValue * 7
+    end = (startValue + 1) * 7 - 1
+    updateGraph(start, end)
+    $scope.graphPosition = startValue
+
+  $scope.steps = () ->
+    output = []
+    for i in 0:Math.ceil(Object.keys($scope.stats).length / 7)
+      output.push(i)
+    return output
+
+  updateStatus = () ->
+    if not $scope.updating.status
+      $scope.updating.status = true
+      $.getJSON('/api/status', (data) ->
+        $scope.status = data.coffee
+        $scope.updating.status = false
+      )
+
+    if not $scope.updating.stats
+      $scope.updating.stats = true
+      $.getJSON('/api/stats', (data) ->
+        # $scope.stats = data.stats
+        updateGraph(start, end)
+        $scope.updating.stats = false
+      )
+
+  updateGraph(start, end)
+
+
+  $('.btn-update').on('click', (e) ->
+    e.preventDefault()
+    updateStatus()
+  )
+])
+
+app.directive('chart', () ->
+  return {
+    restrict: 'E',
+    template: '<canvas></canvas>',
+    scope: {model: "=model"},
+    link: (scope, element, attrs) ->
+      canvas  = element.find('canvas')[0]
+      context = canvas.getContext('2d')
+
+      options = scope.model.options or {
+        type: attrs.type or "Line",
+        width: attrs.width  or 500,
+        height: attrs.height or 400
+      }
+
+      canvas.width = options.width
+      canvas.height = options.height
+      chart = new Chart(context)
+
+      chart[options.type](scope.model, options)
+
+      scope.$watch(() ->
+        return scope.model.datasets[0].data
+      , (value) ->
+        chart[options.type](scope.model, options)
+      )
+  }
+)
