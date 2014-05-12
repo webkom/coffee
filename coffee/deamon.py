@@ -32,7 +32,7 @@ def main():
         return reading
 
     while True:
-        if rc_time(PIN) =< 5000:
+        if rc_time(PIN) <= 5000:
             status.update(True)
         else:
             status.update(False)
