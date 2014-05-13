@@ -11,4 +11,4 @@ test:
 
 update:
 	git fetch && git reset --hard origin/master
-	venv/bin/pip install -r requirements.txt
+	venv/bin/pip install -r requirements/base.txt
