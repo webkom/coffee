@@ -33,7 +33,7 @@ var updating = {'status': false, 'stats': false},
   updateStatusText = function (data) {
     $('#status').html(
       'Kaffetrakteren er ' +
-      ( data.status ? 'på' : 'av' ) +
+      ( data.status === true ? 'på' : 'av' ) +
       '. Den ble sist skrudd på ' +
       moment(data.last_start, 'YYYY-MM-DD HH:mm').fromNow() + '.'
     );
