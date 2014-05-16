@@ -89,7 +89,9 @@ app.controller("viewController", ["$scope", ($scope) ->
     if not $scope.updating.stats
       $scope.updating.stats = true
       $.getJSON('/api/stats', (data) ->
-        # $scope.stats = data.stats
+        $scope.stats = data.stats
+        end = Object.keys($scope.stats).length - 1
+        start = end - 7
         updateGraph(start, end)
         $scope.updating.stats = false
       )
