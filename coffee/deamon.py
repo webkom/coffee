@@ -27,10 +27,12 @@ def main():
         GPIO.setup(RCpin, GPIO.IN)
         while (GPIO.input(RCpin) == GPIO.LOW):
             reading += 1
+            if reading > 5000:
+                return reading
         return reading
 
     while True:
-        if rc_time(PIN) < 1500:
+        if rc_time(PIN) <= 5000:
             status.update(True)
         else:
             status.update(False)

@@ -1,6 +1,6 @@
 setup:
 	virtualenv venv
-	venv/bin/pip install -r requirements.txt
+	venv/bin/pip install -r requirements/dev.txt
 	cp example_config .coffeerc
 
 run:
@@ -11,4 +11,4 @@ test:
 
 update:
 	git fetch && git reset --hard origin/master
-	venv/bin/pip install -r requirements.txt
+	venv/bin/pip install -r requirements/base.txt
