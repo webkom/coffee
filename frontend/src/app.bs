@@ -97,12 +97,6 @@ app.controller("viewController", ["$scope", ($scope) ->
       )
 
   updateGraph(start, end)
-
-
-  $('.btn-update').on('click', (e) ->
-    e.preventDefault()
-    updateStatus()
-  )
 ])
 
 app.directive('chart', () ->
