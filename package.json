@@ -1,0 +1,26 @@
+{
+  "name": "coffee",
+  "version": "0.0.0",
+  "description": "[![Build Status](https://travis-ci.org/webkom/coffee.png?branch=master)](https://travis-ci.org/webkom/coffee)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/webkom/coffee.git"
+  },
+  "author": "Webkom (http://webkom.abakus.no)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webkom/coffee/issues"
+  },
+  "homepage": "https://github.com/webkom/coffee",
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-bailey": ">=0.1.1",
+    "gulp-concat": "^2.2.0",
+    "gulp-util": "^2.2.14",
+    "gulp-watch": "^0.6.4"
+  }
+}

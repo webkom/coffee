@@ -1,6 +1,16 @@
 body{
   background: #2e2e2e;
 }
+a {
+  color: #e23e32;
+}
+a:hover {
+  color: #AF0B00;
+}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+  background: #e23e32;
+  border-color: #e23e32;
+}
 .jumbotron{
   background: #fafafa;
   margin-top: 30px;
@@ -10,7 +20,7 @@ body{
   color: #fafafa;
 }
 .clients .well{
-  min-height: 180px; 
+  min-height: 180px;
 }
 .btn-success{
   background: #ec483c;
@@ -22,7 +32,9 @@ body{
 .coffe-statistics{
   color:#fafafa;
 }
-#chart{
+canvas{
+  max-width: 100%;
   background: #f5f5f5;
   border-radius: 4px;
+  padding: 10px;
 }
