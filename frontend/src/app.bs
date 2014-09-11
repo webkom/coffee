@@ -79,24 +79,26 @@ app.controller("viewController", ["$scope", ($scope) ->
     return output
 
   $scope.updateStatus = () ->
-    if not $scope.updating.status
+    if not $scope.updating.status or $scope.updating.stats
       $scope.updating.status = true
-      $.getJSON('/api/status', (data) ->
-        $scope.status = data.coffee
-        $scope.updating.status = false
-      )
-
-    if not $scope.updating.stats
       $scope.updating.stats = true
-      $.getJSON('/api/stats', (data) ->
-        $scope.stats = data.stats
-        end = Object.keys($scope.stats).length - 1
-        start = end - 7
-        updateGraph(start, end)
-        $scope.updating.stats = false
+      return $.when(
+        $.getJSON('/api/status', (data) ->
+          $scope.status = data.coffee
+          $scope.updating.status = false
+        ),
+        $.getJSON('/api/stats', (data) ->
+          $scope.stats = data.stats
+          end = Object.keys($scope.stats).length - 1
+          start = end - 7
+          updateGraph(start, end)
+          $scope.updating.stats = false
+        )
       )
 
-  $scope.updateStatus()
+  $scope.updateStatus().then(() ->
+    $scope.$apply()
+  )
 ])
 
 app.directive('chart', () ->
