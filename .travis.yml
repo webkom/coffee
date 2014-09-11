@@ -15,3 +15,6 @@ script:
 
 services:
   - redis-server
+
+notifications:
+  webhooks: http://chewie.abakus.no/travis
