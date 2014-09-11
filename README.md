@@ -47,3 +47,5 @@ Content-Type: application/json
   }
 }
 ```
+--------
+MIT © webkom, Abakus Linjeforening
