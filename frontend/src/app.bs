@@ -78,7 +78,7 @@ app.controller("viewController", ["$scope", ($scope) ->
       output.push(i)
     return output
 
-  updateStatus = () ->
+  $scope.updateStatus = () ->
     if not $scope.updating.status
       $scope.updating.status = true
       $.getJSON('/api/status', (data) ->
@@ -96,7 +96,7 @@ app.controller("viewController", ["$scope", ($scope) ->
         $scope.updating.stats = false
       )
 
-  updateGraph(start, end)
+  $scope.updateStatus()
 ])
 
 app.directive('chart', () ->
