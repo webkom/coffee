@@ -17,4 +17,4 @@ services:
   - redis-server
 
 notifications:
-  webhooks: http://chewie.abakus.no/travis
+  webhooks: http://chewie.abakus.no/api/travis
