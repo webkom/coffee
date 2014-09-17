@@ -1,23 +1,29 @@
+BIN=node_modules/.bin
+PIP=venv/bin/pip
+PYTHON=venv/bin/python
+
 setup: venv
-	venv/bin/pip install -r requirements/dev.txt
+	${PIP} install -r requirements/dev.txt
+
+rpi: venv
+	${PIP} install -r requirements/rpi.txt
 
 run:
-	gulp
-	PYTHONPATH=$(shell pwd) venv/bin/python coffee/server.py
+	${BIN}/gulp
+	PYTHONPATH=$(shell pwd) ${PYTHON} coffee/server.py
 
 test:
-	PYTHONPATH=$(shell pwd) venv/bin/python coffee/tests.py
+	PYTHONPATH=$(shell pwd) ${PYTHON} coffee/tests.py
 
 update:
 	git fetch && git reset --hard origin/master
-	venv/bin/pip install -r requirements/base.txt
-	node_modules/.bin/gulp
+	${PIP} install -r requirements/base.txt
+	${BIN}/gulp
 
 venv:
 	virtualenv venv
 
-
 .cofferc:
 	cp example_config .coffeerc
 
-production: update test run
+production: update test run rpi
