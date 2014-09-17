@@ -1,9 +1,8 @@
-setup:
-	virtualenv venv
+setup: venv
 	venv/bin/pip install -r requirements/dev.txt
-	cp example_config .coffeerc
 
 run:
+	gulp
 	PYTHONPATH=$(shell pwd) venv/bin/python coffee/server.py
 
 test:
@@ -14,4 +13,11 @@ update:
 	venv/bin/pip install -r requirements/base.txt
 	node_modules/.bin/gulp
 
-production: update
+venv:
+	virtualenv venv
+
+
+.cofferc:
+	cp example_config .coffeerc
+
+production: update test run
