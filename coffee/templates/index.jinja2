@@ -39,7 +39,7 @@
         </div>
         <div class="col-xs-12 col-lg-8 col-lg-offset-2 text-center">
           <ul class="pagination pagination-center">
-            <li data-ng-repeat="step in steps()" data-ng-class="{active: step == graphPosition}"><a data-ng-click="setGraphPosition(step)">{{ step }}</a></li>
+            <li data-ng-repeat="step in steps()" data-ng-init="setGraphPosition(steps().slice(-1)[0])" data-ng-class="{active: step == graphPosition}"><a data-ng-click="setGraphPosition(step)">{{ step }}</a></li>
           </ul>
         </div>
       </div>
