@@ -74,7 +74,7 @@ app.controller("viewController", ["$scope", ($scope) ->
 
   $scope.steps = () ->
     output = []
-    for i in 0:Math.ceil(Object.keys($scope.stats).length / 7)
+    for i in 1:Math.ceil(Object.keys($scope.stats).length / 7)
       output.push(i)
     return output
 
