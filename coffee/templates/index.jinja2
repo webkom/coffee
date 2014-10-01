@@ -38,7 +38,7 @@
           <chart model="chart"></chart>
         </div>
         <div class="col-xs-12 col-lg-8 col-lg-offset-2 text-center">
-          <ul class="pagination pagination-center" data-ng-init="setGraphPosition(steps[steps.length - 1])">
+          <ul class="pagination pagination-center" data-ng-init="setGraphPosition(steps.slice(-1)[0])">
             <li data-ng-repeat="step in steps" data-ng-class="{active: step == graphPosition}"><a data-ng-click="setGraphPosition(step)">{{ step }}</a></li>
           </ul>
         </div>
