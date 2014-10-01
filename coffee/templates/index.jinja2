@@ -18,7 +18,7 @@
     <![endif]-->
  </head>
 
-  <body data-ng-controller="viewController" data-ng-init="updateStatus()">
+  <body data-ng-controller="viewController" data-ng-init="steps = steps()">
     <a href="https://github.com/webkom/coffee"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
     <div class="container">
       {% raw %}
@@ -37,7 +37,7 @@
         <div class="col-xs-12 col-lg-8 col-lg-offset-2 text-center">
           <chart model="chart"></chart>
         </div>
-        <div class="col-xs-12 col-lg-8 col-lg-offset-2 text-center" data-ng-init"steps = steps()">
+        <div class="col-xs-12 col-lg-8 col-lg-offset-2 text-center">
           <ul class="pagination pagination-center" data-ng-init="setGraphPosition(steps.slice(-1)[0])">
             <li data-ng-repeat="step in steps" data-ng-class="{active: step == graphPosition}"><a data-ng-click="setGraphPosition(step)">{{ step }}</a></li>
           </ul>
