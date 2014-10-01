@@ -67,8 +67,8 @@ app.controller("viewController", ["$scope", ($scope) ->
     return 'Kaffetrakteren er #{status}. Den ble sist skrudd på #{timeSince}.'
 
   $scope.setGraphPosition = (startValue) ->
-    start = startValue * 7
-    end = (startValue + 1) * 7 - 1
+    start = (startValue - 1) * 7
+    end = startValue * 7
     updateGraph(start, end)
     $scope.graphPosition = startValue
 
