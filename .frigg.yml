@@ -1,0 +1,4 @@
+tasks:
+ - tox
+ - coverage report
+ - flake8
