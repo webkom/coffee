@@ -1,5 +1,5 @@
 # coffee
-[![Build Status](https://travis-ci.org/webkom/coffee.png?branch=master)](https://travis-ci.org/webkom/coffee)
+[![Build Status](https://ci.frigg.io/badges/webkom/coffee/)](https://ci.frigg.io/webkom/coffee/last/)
 
 An API to the Moccamaster at the Abakus office.
 
