@@ -1,5 +1,4 @@
-# coffee
-[![Build Status](https://ci.frigg.io/badges/webkom/coffee/)](https://ci.frigg.io/webkom/coffee/last/)
+# coffee [![CircleCI](https://circleci.com/gh/webkom/coffee.svg?style=svg&circle-token=8f404a282940246354cff9f1ed724703769f2fba)](https://circleci.com/gh/webkom/coffee)
 
 An API to the Moccamaster at the Abakus office.
 

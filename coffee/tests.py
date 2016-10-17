@@ -1,5 +1,5 @@
-import unittest
 import json
+import unittest
 from datetime import datetime
 
 from coffee import server
@@ -47,7 +47,7 @@ class TestViews(unittest.TestCase):
         response = self.app.get('/api/status')
         self.assertStatusCode(response, 200)
         self.assertEquals(
-            json.loads(response.data)['coffee'],
+            json.loads(response.data.decode())['coffee'],
             self.EXAMPLE_OUTPUT
         )
 
@@ -67,14 +67,16 @@ class TestViews(unittest.TestCase):
         response = self.app.get('/api/status')
         self.assertStatusCode(response, 200)
         self.assertEquals(
-            json.loads(response.data)['coffee'],
+            json.loads(response.data.decode())['coffee'],
             self.UNKNOWN_STATUS
         )
 
     def test_coffeetxt(self):
         response = self.app.get('/coffee.txt')
         self.assertStatusCode(response, 200)
-        self.assertEqual(response.data, '1\n%s' % datetime.now().strftime('%d. %B %Y %H:%M:00'))
+        self.assertEqual(
+            response.data.decode(), '1\n%s' % datetime.now().strftime('%d. %B %Y %H:%M:00')
+        )
 
 
 if __name__ == '__main__':

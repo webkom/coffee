@@ -1,0 +1,24 @@
+machine:
+  post:
+    - wget https://s3.amazonaws.com/circle-downloads/circle-pyenv-python-3.5.1_1.0_amd64.deb
+    - sudo dpkg -i circle-pyenv-python-3.5.1_1.0_amd64.deb
+  python:
+    version: 3.5.1
+  services:
+    - redis
+
+dependencies:
+  cache_directories:
+    - .tox
+  pre:
+    - pip install tox
+    - pip install -r requirements/test.txt
+  override:
+    - tox --notest
+
+test:
+  override:
+    - tox -e tests
+    - tox -e isort
+    - tox -e flake8
+    - tox -e coverage

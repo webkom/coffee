@@ -1,7 +1,7 @@
-import ConfigParser
 import os
+from configparser import ConfigParser, NoOptionError
 
-config = ConfigParser.ConfigParser()
+config = ConfigParser()
 config.read([os.path.dirname(os.path.dirname(__file__)) + '/.coffeerc'])
 
 app_config = {
@@ -12,5 +12,5 @@ app_config = {
 }
 try:
     app_config['REDIS_PW'] = config.get('coffee_server', 'redis_pw')
-except ConfigParser.NoOptionError:
+except NoOptionError:
     app_config['REDIS_PW'] = None

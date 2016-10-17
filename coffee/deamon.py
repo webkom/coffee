@@ -1,12 +1,13 @@
 #!/home/pi/coffee/venv/bin/python
 
-import time
-import sys
 import os
+import sys
+import time
+
+from coffee.models import Status
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from coffee.models import Status
 
 DEBUG = 1
 PIN = 14

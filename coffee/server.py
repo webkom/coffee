@@ -1,10 +1,11 @@
-from flask import Flask, render_template
 from datetime import datetime
 
+from flask import Flask, render_template
+
 from coffee.config import app_config
-from coffee.utils import json_response, txt_response
 from coffee.decorators import crossdomain
 from coffee.models import Status
+from coffee.utils import json_response, txt_response
 
 app = Flask(__name__)
 app.config.update(app_config)

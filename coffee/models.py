@@ -1,6 +1,6 @@
-import redis
-
 from datetime import datetime, timedelta
+
+import redis
 
 from coffee.config import app_config
 

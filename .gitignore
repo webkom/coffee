@@ -43,3 +43,4 @@ venv/
 
 # idea files
 .idea/
+coverage.xml
