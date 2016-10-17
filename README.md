@@ -6,10 +6,17 @@ An API to the Moccamaster at the Abakus office.
 ```bash
 git clone git@github.com:webkom/coffee.git
 cd coffee
-make
+virualenv venv -p python3
+source venv/bin/activate
+pip install -r requirements/base.txt
+npm install
 ```
 
-Run the project by running `make run`.
+## Run the server
+```bash
+npm run build
+python -m coffee.server
+```
 
 ## Use the API
 ### GET [kaffe.abakus.no/api/status](http://kaffe.abakus.no/api/status)
