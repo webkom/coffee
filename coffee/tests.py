@@ -55,7 +55,7 @@ class TestViews(unittest.TestCase):
         response = self.app.get('/api/stats')
         self.assertStatusCode(response, 200)
         self.assertEquals(
-            json.loads(response.data)['stats'],
+            json.loads(response.data.decode())['stats'],
             {
                 datetime.now().strftime('%Y-%m-%d'): '1'
             }

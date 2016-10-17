@@ -11,7 +11,9 @@ class Status (object):
         self.redis = redis.Redis(
             host=app_config['REDIS_HOST'],
             port=app_config['REDIS_PORT'],
-            password=app_config['REDIS_PW']
+            password=app_config['REDIS_PW'],
+            charset='utf-8',
+            decode_responses=True
         )
         try:
             self.get()
