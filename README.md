@@ -18,6 +18,12 @@ npm run build
 python -m coffee.server
 ```
 
+## Run the tests
+```bash
+pip install tox
+tox
+```
+
 ## Use the API
 ### GET [kaffe.abakus.no/api/status](http://kaffe.abakus.no/api/status)
 Return data of last time coffee was turned on.
