@@ -10,32 +10,38 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 
 DEBUG = 1
-PIN = 14
+
+# The GPIO pin the button is connected to
+BUTTON_PIN = 7
+# The GPIO pin the button's LED is connected to
+LED_PIN = 4
 
 
 def main():
     import RPi.GPIO as GPIO
 
-    GPIO.setmode(GPIO.BCM)
     status = Status()
 
-    def rc_time(RCpin):
-        reading = 0
-        GPIO.setup(RCpin, GPIO.OUT)
-        GPIO.output(RCpin, GPIO.LOW)
-        time.sleep(0.1)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(LED_PIN, GPIO.OUT, initial=1)
 
-        GPIO.setup(RCpin, GPIO.IN)
-        while (GPIO.input(RCpin) == GPIO.LOW):
-            reading += 1
-            if reading > 5000:
-                return reading
-        return reading
+    # Blink the LED, leave off
+    def blink_led(num_blinks, blink_duration, blink_pause):
+        for b in range(num_blinks):
+            GPIO.output(LED_PIN, 1)
+            time.sleep(blink_duration)
+            GPIO.output(LED_PIN, 0)
+            time.sleep(blink_pause)
+        GPIO.output(LED_PIN, 0)
 
+    # Listen for button presses
     while True:
-        if rc_time(PIN) <= 5000:
+        input_value = GPIO.input(BUTTON_PIN)
+        if input_value == False:
             status.update(True)
-        else:
+            blink_led(3, 0.3, 0.2)
             status.update(False)
+        time.sleep(0.1)
 
 main()
