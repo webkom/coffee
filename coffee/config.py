@@ -1,16 +1,11 @@
 import os
-from configparser import ConfigParser, NoOptionError
-
-config = ConfigParser()
-config.read([os.path.dirname(os.path.dirname(__file__)) + '/.coffeerc'])
 
 app_config = {
-    'DEBUG': config.getboolean('coffee_server', 'debug'),
-    'REDIS_DB': int(config.get('coffee_server', 'redis_db')),
-    'REDIS_HOST': config.get('coffee_server', 'redis_host'),
-    'REDIS_PORT': int(config.get('coffee_server', 'redis_port')),
+    'DEBUG': bool(os.getenv('DEBUG', True)),
+    'REDIS_DB': int(os.getenv('REDIS_DB', 1)),
+    'REDIS_HOST': os.getenv('REDIS_HOST', '127.0.0.1'),
+    'REDIS_PORT': int(os.getenv('REDIS_PORT', 6379)),
+    'REDIS_PW': os.getenv('REDIS_PW', None),
+    'SERVER_HOST': os.getenv('SERVER_HOST', '127.0.0.1'),
+    'SERVER_PORT': int(os.getenv('SERVER_PORT', 5000))
 }
-try:
-    app_config['REDIS_PW'] = config.get('coffee_server', 'redis_pw')
-except NoOptionError:
-    app_config['REDIS_PW'] = None

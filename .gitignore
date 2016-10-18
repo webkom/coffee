@@ -1,5 +1,4 @@
 *.py[cod]
-.coffeerc
 coffee/static/*.js
 node_modules/
 

@@ -50,4 +50,4 @@ def api_stats():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host=app_config['SERVER_HOST'], port=app_config['SERVER_PORT'])
