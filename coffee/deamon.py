@@ -30,7 +30,7 @@ def main():
     # Listen for button presses
     while True:
         input_value = GPIO.input(BUTTON_PIN)
-        if input_value == False:
+        if not input_value:
             status.update(True)
             blink_led(3, 0.3, 0.2) # equals sleep of 3 * (0.3 + 0.2) = 1.5 seconds
             GPIO.output(LED_PIN, 0) # Turn off light to signalize button cannot be pushed
