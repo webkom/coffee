@@ -32,11 +32,11 @@ def main():
         input_value = GPIO.input(BUTTON_PIN)
         if not input_value:
             status.update(True)
-            blink_led(3, 0.3, 0.2) # equals sleep of 3 * (0.3 + 0.2) = 1.5 seconds
-            GPIO.output(LED_PIN, 0) # Turn off light to signalize button cannot be pushed
-            time.sleep(300) # Sleep for five minutes to avoid spamming the button
+            blink_led(3, 0.3, 0.2)  # equals sleep of 3 * (0.3 + 0.2) = 1.5 seconds
+            GPIO.output(LED_PIN, 0)  # Turn off light to signalize button cannot be pushed
+            time.sleep(300)  # Sleep for five minutes to avoid spamming the button
             status.update(False)
-            GPIO.output(LED_PIN, 1) # Turn on light when button is ready to be pushed again
+            GPIO.output(LED_PIN, 1)  # Turn on light when button is ready to be pushed again
         time.sleep(0.1)
 
 main()
