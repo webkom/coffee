@@ -8,17 +8,7 @@ app.controller("viewController", ["$scope", ($scope) ->
   $scope.graphPosition = 0
   $scope.updating = {'status': false, 'stats': false}
   $scope.status = {'status': false, 'last_start': undefined}
-  $scope.stats = {
-    '2014-02-02': 5,
-    '2014-02-01': 10,
-    '2014-02-03': 5,
-    '2014-02-05': 1,
-    '2014-02-06': 5,
-    '2014-02-04': 7,
-    '2014-02-07': 1,
-    '2014-02-08': 5,
-    '2014-02-09': 7,
-  }
+  $scope.stats = {}
 
   $scope.chart = {
     labels: [],
