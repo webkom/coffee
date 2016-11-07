@@ -2,12 +2,14 @@ from datetime import datetime, timedelta
 
 import redis
 
-from coffee.config import app_config
+from coffee.config import app_config, integrations
 
 
 class Status (object):
 
     def __init__(self):
+        self.integrations = integrations
+
         self.redis = redis.Redis(
             host=app_config['REDIS_HOST'],
             port=app_config['REDIS_PORT'],
@@ -56,8 +58,13 @@ class Status (object):
             self.current_status = new_status
             if self.last_start + timedelta(seconds=40) < datetime.now():
                 self.log_status(new_status)
+                self.notify_integrations()
             self.last_start = self.calculate_last_start(new_status)
             self.save()
+
+    def notify_integrations(self):
+        for integration in self.integrations:
+            integration.notify()
 
     def log_status(self, status):
         if status:
