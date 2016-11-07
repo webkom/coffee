@@ -1,5 +1,5 @@
 import os
-from coffee.integrations import DummyIntegration
+from coffee.integrations import NotiwireIntegration
 
 app_config = {
     'DEBUG': bool(os.getenv('DEBUG', True)),
@@ -11,4 +11,6 @@ app_config = {
     'SERVER_PORT': int(os.getenv('SERVER_PORT', 5000))
 }
 
-integrations = [DummyIntegration()]
+integrations = [
+    NotiwireIntegration(os.getenv('NOTIWIRE_KEY', 'invalid_key'))
+]
