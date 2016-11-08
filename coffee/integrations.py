@@ -1,4 +1,7 @@
+import logging
 import requests
+
+logger = logging.getLogger(__name__)
 
 
 class Integration:
@@ -25,4 +28,13 @@ class NotiwireIntegration(Integration):
         self.api_key = api_key
 
     def notify(self):
-        requests.post(self.API_URL, data={'api_key': self.api_key}, headers=self.headers)
+        try:
+            r = requests.post(
+                self.API_URL, data={'api_key': self.api_key},
+                headers=self.headers, timeout=5
+            )
+            if r.status_code != 200:
+                logger.warning('Notiwire returned error: ' + r.text)
+
+        except requests.exceptions.RequestException as e:
+            logger.warning('Exception occured when sending POST request to notiwire: ' + str(e))
