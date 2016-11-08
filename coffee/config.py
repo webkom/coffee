@@ -11,6 +11,8 @@ app_config = {
     'SERVER_PORT': int(os.getenv('SERVER_PORT', 5000))
 }
 
-integrations = [
-    NotiwireIntegration(os.getenv('NOTIWIRE_KEY', 'invalid_key'))
-]
+
+integrations = []
+
+if os.getenv('NOTIWIRE_KEY') is not None:
+    integrations.append(NotiwireIntegration(os.getenv('NOTIWIRE_KEY')))
