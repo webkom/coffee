@@ -1,4 +1,5 @@
 import os
+from coffee.integrations import NotiwireIntegration
 
 app_config = {
     'DEBUG': bool(os.getenv('DEBUG', True)),
@@ -9,3 +10,9 @@ app_config = {
     'SERVER_HOST': os.getenv('SERVER_HOST', '127.0.0.1'),
     'SERVER_PORT': int(os.getenv('SERVER_PORT', 5000))
 }
+
+
+integrations = []
+
+if os.getenv('NOTIWIRE_KEY') is not None:
+    integrations.append(NotiwireIntegration(os.getenv('NOTIWIRE_KEY')))
