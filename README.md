@@ -9,7 +9,7 @@ git clone git@github.com:webkom/coffee.git
 cd coffee
 pip install -r requirements/base.txt
 ```
-Configure environment variables mentioned in `coffee/config.js`. 
+Configure environment variables mentioned in `coffee/config.py`.
 Make sure the `coffee` module is part of your `PYTHONPATH`.  
 
 ### Run
