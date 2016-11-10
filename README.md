@@ -2,7 +2,22 @@
 
 An API to the Moccamaster at the Abakus office.
 
-## Setup dev environment
+## Raspberry Pi
+### Setup
+```bash
+git clone git@github.com:webkom/coffee.git
+cd coffee
+pip install -r requirements/base.txt
+```
+Configure environment variables mentioned in `coffee/config.py`.
+Make sure the `coffee` module is part of your `PYTHONPATH`.  
+
+### Run
+Run `python3 -m coffee.deamon` using your favorite daemonizer.
+
+
+## Server
+### Setup dev environment
 ```bash
 git clone git@github.com:webkom/coffee.git
 cd coffee
@@ -12,13 +27,13 @@ pip install -r requirements/base.txt
 npm install
 ```
 
-## Run the server
+### Run the server
 ```bash
 npm run build
 python -m coffee.server
 ```
 
-## Run the tests
+### Run the tests
 ```bash
 pip install tox
 tox
@@ -45,7 +60,7 @@ Content-Type: application/json
 ```
 
 ### GET [kaffe.abakus.no/api/stats](http://kaffe.abakus.no/api/stats)
-Return stats of usage of the coffee machine. 
+Return stats of usage of the coffee machine.
 ##### Example response
 HTTP/1.1 200 OK   
 Content-Type: application/json
