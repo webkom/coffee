@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+import dateutil.parser
 import redis
 
 from coffee.config import app_config, integrations
@@ -21,9 +22,9 @@ class Status (object):
             self.get()
         except:
             self.current_status = False
-            self.last_start = datetime.strptime('1977-11-21 12:00', '%Y-%m-%d %H:%M')
+            self.last_start = datetime(1977, 11, 21, 12, 0)
             span = datetime.utcnow() - self.last_start
-            self.hours_since = (span.days*24)+(span.seconds//3600)
+            self.hours_since = (span.days * 24) + (span.seconds // 3600)
             self.minutes_since = (span.seconds//60) % 60
 
     def save(self):
@@ -32,7 +33,7 @@ class Status (object):
     def get(self):
         previous = self.redis.hgetall('coffeestatus')
         self.current_status = previous['status'] == 'True'
-        self.last_start = datetime.strptime(previous['last_start'], '%Y-%m-%d %H:%M')
+        self.last_start = dateutil.parser.parse(previous['last_start'])
         span = datetime.utcnow() - self.last_start
         self.hours_since = (span.days*24)+(span.seconds//3600)
         self.minutes_since = (span.seconds//60) % 60
@@ -69,10 +70,10 @@ class Status (object):
 
     def log_status(self, status):
         if status:
-            self.redis.hincrby('coffeestats', datetime.utcnow().isoformat(), 1)
+            self.redis.hincrby('coffeestats', datetime.utcnow().strftime('%Y-%m-%d'), 1)
 
     def get_count(self, date):
-        return self.redis.hget('coffeestats', date.isoformat()) or 0
+        return self.redis.hget('coffeestats', date.strftime('%Y-%m-%d')) or 0
 
     def get_stats(self):
         return self.redis.hgetall('coffeestats')

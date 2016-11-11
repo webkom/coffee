@@ -8,14 +8,16 @@ from coffee.models import Status
 
 class TestViews(unittest.TestCase):
 
+    NOW = datetime.utcnow().isoformat()
+
     EXAMPLE_STATUS = {
         "status": True,
-        "last_start": datetime.now().strftime('%Y-%m-%d %H:%M'),
+        "last_start": NOW,
     }
 
     EXAMPLE_OUTPUT = {
         "status": True,
-        "last_start": datetime.now().strftime('%Y-%m-%d %H:%M'),
+        "last_start": NOW,
         "time_since": {
             "hours": 0,
             "minutes": 0
@@ -31,13 +33,13 @@ class TestViews(unittest.TestCase):
         self.status = Status()
         self.redis = self.status.redis
         self.redis.hmset('coffeestatus', self.EXAMPLE_STATUS)
-        self.redis.hmset('coffeestats', {datetime.now().strftime('%Y-%m-%d'): 1})
+        self.redis.hmset('coffeestats', {datetime.utcnow().strftime('%Y-%m-%d'): 1})
 
     def tearDown(self):
         pass
 
     def assertStatusCode(self, response, expected):
-        self.assertEquals(response._status_code, expected)
+        self.assertEqual(response._status_code, expected)
 
     def test_index(self):
         response = self.app.get('/')
@@ -46,7 +48,7 @@ class TestViews(unittest.TestCase):
     def test_status(self):
         response = self.app.get('/api/status')
         self.assertStatusCode(response, 200)
-        self.assertEquals(
+        self.assertEqual(
             json.loads(response.data.decode())['coffee'],
             self.EXAMPLE_OUTPUT
         )
@@ -54,10 +56,10 @@ class TestViews(unittest.TestCase):
     def test_stats(self):
         response = self.app.get('/api/stats')
         self.assertStatusCode(response, 200)
-        self.assertEquals(
+        self.assertEqual(
             json.loads(response.data.decode())['stats'],
             {
-                datetime.now().strftime('%Y-%m-%d'): '1'
+                datetime.utcnow().strftime('%Y-%m-%d'): '1'
             }
         )
 
@@ -66,7 +68,7 @@ class TestViews(unittest.TestCase):
         self.redis.hdel('coffeestatus', 'last_start')
         response = self.app.get('/api/status')
         self.assertStatusCode(response, 200)
-        self.assertEquals(
+        self.assertEqual(
             json.loads(response.data.decode())['coffee'],
             self.UNKNOWN_STATUS
         )
@@ -75,7 +77,7 @@ class TestViews(unittest.TestCase):
         response = self.app.get('/coffee.txt')
         self.assertStatusCode(response, 200)
         self.assertEqual(
-            response.data.decode(), '1\n%s' % datetime.now().strftime('%d. %B %Y %H:%M:00')
+            response.data.decode(), '1\n%s' % datetime.utcnow().strftime('%d. %B %Y %H:%M:%S')
         )
 
 
