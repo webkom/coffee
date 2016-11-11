@@ -1,0 +1,15 @@
+pipeline:
+    tests:
+        image: python:3.5
+        commands:
+            - pip install tox
+            - pip install -r requirements/test.txt
+
+            - tox -e tests
+            - tox -e isort
+            - tox -e flake8
+            - tox -e coverage
+
+services:
+  database:
+    image: redis
