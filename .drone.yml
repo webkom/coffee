@@ -1,0 +1,27 @@
+pipeline:
+  tests:
+    image: python:3.5
+    commands:
+      - pip install tox
+      - pip install -r requirements/test.txt
+
+      - tox -e tests
+      - tox -e isort
+      - tox -e flake8
+      - tox -e coverage
+
+  docker:
+    image: plugins/docker
+    when:
+      branch: release
+      event: push
+    repo: abakus/coffee
+    tag: latest
+
+  slack:
+    image: plugins/slack
+    channel: abakaffe
+
+services:
+  database:
+    image: redis
