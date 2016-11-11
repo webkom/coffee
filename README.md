@@ -7,7 +7,7 @@ An API to the Moccamaster at the Abakus office.
 ```bash
 git clone git@github.com:webkom/coffee.git
 cd coffee
-pip install -r requirements/base.txt
+pip install -r requirements/rpi.txt
 ```
 Configure environment variables mentioned in `coffee/config.py`.
 Make sure the `coffee` module is part of your `PYTHONPATH`.  
