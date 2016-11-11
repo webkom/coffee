@@ -1,4 +1,4 @@
-# coffee [![CircleCI](https://circleci.com/gh/webkom/coffee.svg?style=svg&circle-token=8f404a282940246354cff9f1ed724703769f2fba)](https://circleci.com/gh/webkom/coffee)
+# coffee [![Build Status](https://ci.abakus.no/api/badges/webkom/coffee/status.svg)](https://ci.abakus.no/webkom/coffee)
 
 An API to the Moccamaster at the Abakus office.
 
@@ -45,7 +45,7 @@ Content-Type: application/json
 ```
 
 ### GET [kaffe.abakus.no/api/stats](http://kaffe.abakus.no/api/stats)
-Return stats of usage of the coffee machine. 
+Return stats of usage of the coffee machine.
 ##### Example response
 HTTP/1.1 200 OK   
 Content-Type: application/json
