@@ -1,6 +1,8 @@
 pipeline:
   tests:
     image: python:3.5
+    when:
+      event: push
     commands:
       - pip install tox
       - pip install -r requirements/test.txt
@@ -20,6 +22,9 @@ pipeline:
 
   slack:
     image: plugins/slack
+    when:
+      status: [ success, failure ]
+      event: push
     channel: abakaffe
 
 services:
