@@ -58,7 +58,8 @@ class Status (object):
             self.current_status = new_status
             if self.last_start + timedelta(seconds=40) < datetime.now():
                 self.log_status(new_status)
-                self.notify_integrations()
+                if self.current_status is True:
+                    self.notify_integrations()
             self.last_start = self.calculate_last_start(new_status)
             self.save()
 
