@@ -36,6 +36,8 @@ npm run build
 python -m coffee.server
 ```
 
+You can mock a button press by running `python mock_button_press.py`
+
 ### Run the tests
 ```bash
 pip install tox
