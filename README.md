@@ -18,6 +18,9 @@ Run `python3 -m coffee.deamon` using your favorite daemonizer.
 
 ## Server
 ### Setup dev environment
+
+You will need to have redis installed and configured. Here's [a guide for Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-redis-on-ubuntu-16-04).
+
 ```bash
 git clone git@github.com:webkom/coffee.git
 cd coffee
